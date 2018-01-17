@@ -3,6 +3,7 @@ classdef MDG < handle
         cnt
         keyboard
         displayer
+        data
         rule
         myID
         oppID
@@ -414,6 +415,8 @@ classdef MDG < handle
                     obj.displayer.blackScreen();
                 end
 
+                
+                obj.data = data;
                 if(obj.isRealExp) data.saveToFile(); end
                 fprintf('----END OF EXPERIMENT----\n');
 

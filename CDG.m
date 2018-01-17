@@ -3,6 +3,7 @@ classdef CDG < handle
         cnt
         keyboard
         displayer
+        data
         rule
         myID
         oppID
@@ -194,13 +195,16 @@ classdef CDG < handle
                     WaitSecs(showResultTime);
                     obj.displayer.blackScreen();
                 end
-
-                %==== random number ====%
+                
+                obj.data = data;
+                
                 obj.displayer.writeMessage('End of Experiment','');
                 WaitSecs(4);
                 obj.displayer.blackScreen();
                 WaitSecs(1);
-
+                
+                %==== random number ====%
+                
                 if(obj.isRealExp)
                     spacePressed = FALSE;
                     obj.keyboard.flushKbEvent();

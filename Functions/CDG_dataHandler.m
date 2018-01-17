@@ -84,21 +84,21 @@ classdef CDG_dataHandler <handle
             
             % p1 p2 choice guess
             if strcmp(obj.rule , 'player1')
-                obj.result{trial,2} = myRes.choice;
-                obj.result{trial,3} = myRes.guess;
-                obj.result{trial,4} = oppRes.choice;
-                obj.result{trial,5} = oppRes.guess;
-                obj.result{trial,12} = myRes.events;
-                obj.result{trial,13} = oppRes.events;
+                obj.result{trial,obj.p1choice} = myRes.choice;
+                obj.result{trial,obj.p1guess} = myRes.guess;
+                obj.result{trial,obj.p2choice} = oppRes.choice;
+                obj.result{trial,obj.p2guess} = oppRes.guess;
+                obj.result{trial,obj.p1events} = myRes.events;
+                obj.result{trial,obj.p2events} = oppRes.events;
             end
             
             if strcmp(obj.rule , 'player2')
-                obj.result{trial,2} = oppRes.choice;
-                obj.result{trial,3} = oppRes.guess;
-                obj.result{trial,4} = myRes.choice;
-                obj.result{trial,5} = myRes.guess;
-                obj.result{trial,12} = oppRes.events;
-                obj.result{trial,13} = myRes.events;
+                obj.result{trial,obj.p1choice} = oppRes.choice;
+                obj.result{trial,obj.p1guess} = oppRes.guess;
+                obj.result{trial,obj.p2choice} = myRes.choice;
+                obj.result{trial,obj.p2guess} = myRes.guess;
+                obj.result{trial,obj.p1events} = oppRes.events;
+                obj.result{trial,obj.p2events} = myRes.events;
             end
             
             

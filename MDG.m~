@@ -87,9 +87,15 @@ classdef MDG < handle
                     invalid_res = 0;
                     %=========== Setting Up Trials ==============%
                     %Syncing
-                    
-                    obj.cnt.syncTrial(trial);
-                    
+                    if(trial == 1)
+                        obj.displayer.writeMessage('Waiting for Opponent.','');
+                        fprintf('Waiting for Opponent.\n');
+                        obj.cnt.syncTrial(trial);
+                        obj.displayer.blackScreen();
+                    else
+                        obj.cnt.syncTrial(trial);
+                    end
+
                     %display respond package
                     myRes.youAreDictator = strcmp(obj.rule,data.getDictator(trial));
                     myRes.keepMoney_ori     = -1;

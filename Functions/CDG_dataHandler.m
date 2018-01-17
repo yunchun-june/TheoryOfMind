@@ -133,7 +133,8 @@ classdef CDG_dataHandler <handle
                 obj.result{trial,obj.p2IsRight} = 0;
                 obj.result{trial,obj.realSum}   = 0;
                 obj.result{trial,obj.winner}    = 1;
-            else
+            elseif(obj.result{trial,obj.p1choice} ~= 0 && obj.result{trial,obj.p1choice} ~= 0)
+                
                 obj.result{trial,obj.realSum} = obj.result{trial,obj.p1choice} + obj.result{trial,obj.p2choice};
                 
                 if(obj.result{trial,obj.p1guess} == obj.result{trial,obj.realSum})

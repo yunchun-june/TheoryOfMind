@@ -265,7 +265,7 @@ classdef displayer < handle
                     if res.s3answered obj.MDG_drawHeart(res.s3,3,8);
                     else obj.write('Not answered',3,8,'red',30); end
                 end
-                if invalid obj.write('Please make respond in time',3,9,'red',30); end
+                if invalid obj.write('Please make response in time',3,9,'red',30); end
             end
             
             %10      timer

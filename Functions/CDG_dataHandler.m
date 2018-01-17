@@ -77,7 +77,6 @@ classdef CDG_dataHandler <handle
             end
         end
         
-        
         function updateData(obj,myRes,oppRes,trial)
           
             obj.result{trial,1} = trial;
@@ -172,33 +171,33 @@ classdef CDG_dataHandler <handle
         end
         
         function data = getResult(obj,trial)
+            
             if strcmp(obj.rule , 'player1')
-                data.yourChoice = obj.result{trial,2};
-                data.yourGuess  = obj.result{trial,3};
-                data.oppChoice  = obj.result{trial,4};
-                data.oppGuess   = obj.result{trial,5};
-                data.realSum    = obj.result{trial,6};
-                data.yourScore  = obj.result{trial,10};
-                data.oppScore   = obj.result{trial,11};
+                data.yourChoice = obj.result{trial,obj.p1choice};
+                data.yourGuess  = obj.result{trial,obj.p1guess};
+                data.oppChoice  = obj.result{trial,obj.p2choice};
+                data.oppGuess   = obj.result{trial,obj.p2guess};
+                data.realSum    = obj.result{trial,obj.realSum};
+                data.yourScore  = obj.result{trial,obj.p1score};
+                data.oppScore   = obj.result{trial,obj.p2score};
                 
-                if(obj.result{trial,9} == 1) data.winner = 'WIN'; end
-                if(obj.result{trial,9} == 2) data.winner = 'LOSE'; end
-                if(obj.result{trial,9} == 0) data.winner = 'DRAW'; end
+                if(obj.result{trial,obj.winner} == 1) data.winner = 'WIN'; end
+                if(obj.result{trial,obj.winner} == 2) data.winner = 'LOSE'; end
+                if(obj.result{trial,obj.winner} == 0) data.winner = 'DRAW'; end
             end
             
             if strcmp(obj.rule , 'player2')
-                data.yourChoice = obj.result{trial,4};
-                data.yourGuess  = obj.result{trial,5};
-                data.oppChoice  = obj.result{trial,1};
-                data.oppGuess   = obj.result{trial,3};
-                data.realSum    = obj.result{trial,6};
-                data.winner     = obj.result{trial,9};
-                data.yourScore  = obj.result{trial,11};
-                data.oppScore   = obj.result{trial,10};
+                data.yourChoice = obj.result{trial,obj.p2choice};
+                data.yourGuess  = obj.result{trial,obj.p2guess};
+                data.oppChoice  = obj.result{trial,obj.p1choice};
+                data.oppGuess   = obj.result{trial,obj.p1guess};
+                data.realSum    = obj.result{trial,obj.realSum};
+                data.yourScore  = obj.result{trial,obj.p2score};
+                data.oppScore   = obj.result{trial,obj.p1score};
                 
-                if(obj.result{trial,9} == 2) data.winner = 'WIN'; end
-                if(obj.result{trial,9} == 1) data.winner = 'LOSE'; end
-                if(obj.result{trial,9} == 0) data.winner = 'DRAW'; end
+                if(obj.result{trial,obj.winner} == 2) data.winner = 'WIN'; end
+                if(obj.result{trial,obj.winner} == 1) data.winner = 'LOSE'; end
+                if(obj.result{trial,obj.winner} == 0) data.winner = 'DRAW'; end
             end
         end
         

@@ -44,9 +44,6 @@ classdef CDG < handle
 
                 fprintf('---Starting Experiment---\n');
 
-                if(strcmp(obj.rule,'player1')) displayerOn = TRUE; end
-                if(strcmp(obj.rule,'player2')) displayerOn = FALSE; end
-
                 %===== Initialize Componets =====%
                 %keyboard    = keyboardHandler(inputDeviceName);
                 %displayer   = displayer(max(Screen('Screens')),displayerOn);

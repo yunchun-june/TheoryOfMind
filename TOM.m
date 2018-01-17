@@ -53,10 +53,6 @@ try
 %     end
     
     %===== Initialize Componets =====%
-    if(strcmp(rule,'player1')) displayerOn = TRUE; end
-    if(strcmp(rule,'player2')) displayerOn = FALSE; end
-    automode = FALSE;
-    
     keyboard    = keyboardHandler();
     displayer   = displayer(max(Screen('Screens')),displayerOn);
     

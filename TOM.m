@@ -8,10 +8,13 @@ try
     %===== Constants =====%
     TRUE                = 1;
     FALSE               = 0;
+    
+    %===== Constants =====%
     CDG_practiceTrial       = 5;
     CDG_realExpTrial        = 45;
     MDG_practiceTrial       = 5;
     MDG_realExpTrial        = 45;
+    displayerOn             = TRUE;
     
     %===== IP Config for 505 ===%
     myID = input('This seat: ','s');

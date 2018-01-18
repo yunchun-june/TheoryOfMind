@@ -9,6 +9,8 @@ classdef CDG < handle
         oppID
         totalTrials
         isRealExp
+        payoff = 0;
+        finalScore = 0;
     end
     
     methods
@@ -27,6 +29,11 @@ classdef CDG < handle
             
         end
         
+        %---- Experiment -----%
+        function payoff = getPayoff(obj)
+            payoff = obj.payoff;
+        end
+        
         function run(obj)
 
             try
@@ -35,7 +42,7 @@ classdef CDG < handle
                 guessSumTime        = 5;
                 showResultTime      = 5;
                 fixationTime        = 1;
-                gainPerWin          = 3;
+                gainPerWin          = 5;
 
                 %===== Constants =====%
                 TRUE                = 1;
@@ -198,11 +205,6 @@ classdef CDG < handle
                 
                 obj.data = data;
                 
-                obj.displayer.writeMessage('End of Experiment','');
-                WaitSecs(4);
-                obj.displayer.blackScreen();
-                WaitSecs(1);
-                
                 %==== random number ====%
                 
                 if(obj.isRealExp)
@@ -220,8 +222,9 @@ classdef CDG < handle
                     WaitSecs(1);
                     obj.displayer.blackScreen();
                     WaitSecs(1);    
-                    fianlScore = data.setKeyGetScore(random);
-                    obj.displayer.writeMessage(['Your Score: ',num2str(fianlScore)],['Your Total Payoff: ',num2str(fianlScore*gainPerWin), '$']);
+                    obj.finalScore = data.setKeyGetScore(random);
+                    obj.payoff = obj.finalScore*gainPerWin
+                    obj.displayer.writeMessage(['Your Score: ',num2str(obj.finalScore)],['Your Total Payoff: ',num2str(obj.payoff), '$']);
                     WaitSecs(5);
 
                     data.saveToFile();
@@ -238,8 +241,6 @@ classdef CDG < handle
             end
 
         end
-        
-        
         
     end
     

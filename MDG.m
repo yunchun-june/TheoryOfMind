@@ -9,6 +9,7 @@ classdef MDG < handle
         oppID
         totalTrials
         isRealExp
+        payoff = 0;
     end
     
     methods
@@ -25,6 +26,10 @@ classdef MDG < handle
             obj.totalTrials = total;
             obj.isRealExp  = isRealExp;
             
+        end
+        
+        function payoff = getPayoff(obj)
+            payoff = obj.payoff;
         end
         
         function run(obj)
@@ -54,7 +59,7 @@ classdef MDG < handle
                 %keyboard    = keyboardHandler(inputDeviceName);
                 %displayer   = displayer(max(Screen('Screens')),displayerOn);
                 parser      = MDG_parser();
-                data        = MDG_dataHandler(obj.myID,obj.oppID,obj.rule,obj.totalTrials);
+                data        = MDG_dataHandler(obj.myID,obj.oppID,obj.rule,obj.totalTrials,obj.isRealExp);
 
                 %===== Start of real experiment ======%
 
@@ -408,7 +413,7 @@ classdef MDG < handle
                     WaitSecs(3);
                     obj.displayer.blackScreen();
                 end
-
+                obj.payoff = data.calculate_score();
                 obj.data = data;
                 if(obj.isRealExp) data.saveToFile(); end
                 fprintf('----END OF EXPERIMENT----\n');
@@ -420,7 +425,6 @@ classdef MDG < handle
                 ShowCursor();
                 if(obj.isRealExp) data.saveToFile(); end
             end
-
         end
         
         

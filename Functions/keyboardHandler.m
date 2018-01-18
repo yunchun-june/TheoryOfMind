@@ -7,12 +7,13 @@ classdef keyboardHandler < handle
     
     properties (Constant)
         quitkey     = 'ESCAPE';
-        confirm     = 'space';
+        confirm     = 'return';
+        %confirm     = 'space';
+        space       = 'space';
         up          = 'UpArrow';
         down        = 'DownArrow';
-        enter       = 'return';
-        %numberKey   = {'1!';'2@';'3#';'4$';'5%';'6^';'7&';'8*';'9('};
         numberKey   = {'1';'2';'3';'4';'5';'6';'7';'8';'9'};
+        %numberKey   = {'a';'s';'d';'f';'g';'h';'j';'k';'l'};
     end
     
     methods
@@ -40,6 +41,12 @@ classdef keyboardHandler < handle
                 
                 if press(KbName(obj.quitkey))
                     keyName = 'quitkey';
+                    timing = GetSecs();
+                    return;
+                end
+                
+                if press(KbName(obj.space))
+                    keyName = 'space';
                     timing = GetSecs();
                     return;
                 end

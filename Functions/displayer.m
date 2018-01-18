@@ -212,17 +212,17 @@ classdef displayer < handle
                 if res.youAreDictator
                     %8 Score2 @
                     if(confirmed)
-                        obj.write('guess given to you:',1,7,'grey',30);
+                        obj.write('Guess receiver mood:',1,7,'grey',30);
                     else
-                        obj.write('guess given to you:',1,7,'white',30);
+                        obj.write('Guess receiver mood:',1,7,'white',30);
                     end
                     obj.MDG_drawHeart(res.s2,3,7);
                 else
                     %7 Score1 #
                     if(confirmed)
-                        obj.write('Give to dictator:',1,7,'grey',30);
+                        obj.write('Your mood:',1,7,'grey',30);
                     else
-                        obj.write('Give to dictator:',1,7,'white',30);
+                        obj.write('Your mood:',1,7,'white',30);
                     end
                     obj.MDG_drawHeart(res.s1,3,7);
                 end
@@ -231,12 +231,12 @@ classdef displayer < handle
             if strcmp(res.state,'guess2') || strcmp(res.state,'delay')
                 if res.youAreDictator
                     %8 Score2 @
-                    obj.write('guess given to you:',1,7,'grey',30);
+                    obj.write('Guess receiver mood:',1,7,'grey',30);
                     if(res.s2answered) obj.MDG_drawHeart(res.s2,3,7);
                     else obj.write('Not answered',3,7,'red',30); end
                 else
                     %7 Score1 #
-                    obj.write('Give to dictator:',1,7,'grey',30);
+                    obj.write('Your mood:',1,7,'grey',30);
                     if(res.s1answered) obj.MDG_drawHeart(res.s1,3,7);
                     else obj.write('Not answered',3,7,'red',30); end
                 end
@@ -429,6 +429,22 @@ classdef displayer < handle
 %                 data.yourScore  = obj.result{trial,10};
 %                 data.oppScore   = obj.result{trial,11};
             
+            Screen('Flip',obj.wPtr);
+        end
+        
+        function showPayoff(obj, phase1,phase2)
+            if ~obj.displayerOn return; end
+            
+            obj.write('End of Experiment. Please inform the instructor.',2,2,'white',30);
+            obj.write('Attendence fee',2,4,'white',30);
+            obj.write([num2str(150) ' $'],3,4,'white',30);
+            obj.write('Phase1 reward',2,5,'white',30);
+            obj.write([num2str(phase1) ' $'],3,5,'white',30);
+            obj.write('Phase2 reward',2,6,'white',30);
+            obj.write([num2str(phase2) ' $'],3,6,'white',30);
+            obj.write('---------------------------------------',2,7,'white',30);
+            obj.write('Total',2,8,'white',30);
+            obj.write([num2str(150+phase1+phase2) ' $'],3,8,'white',30);
             Screen('Flip',obj.wPtr);
         end
 

@@ -24,7 +24,7 @@ classdef CDG_dataHandler <handle
         result
         gain
         randomKey
-        finalScore
+        finalPayoff
         
         %columns        index
         trials          =1
@@ -222,6 +222,7 @@ classdef CDG_dataHandler <handle
             end
             
             finalScore = temp;
+            obg.finalPayoff = temp;
         end
         
         function logStatus(obj,trial)

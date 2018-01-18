@@ -10,7 +10,8 @@ classdef MDG_dataHandler <handle
         result
         total_point
         penalty
-        payoff
+        finalPayoff
+        isRealExp
         
         %columns        index
         total_col           =18
@@ -37,7 +38,7 @@ classdef MDG_dataHandler <handle
     methods
         
         %-----Constructor-----%
-        function obj = MDG_dataHandler(ID1,ID2,rule,trials)
+        function obj = MDG_dataHandler(ID1,ID2,rule,trials,isRealExp)
             if strcmp(rule,'player1')
                 obj.player1ID = ID1;
                 obj.player2ID = ID2;
@@ -49,6 +50,7 @@ classdef MDG_dataHandler <handle
             obj.rule = rule;
             obj.totalTrial = trials;
             obj.result = cell(trials,obj.total_col);
+            obj.isRealExp = isRealExp;
             
             for i = 1:trials
                 obj.result{i,obj.trial_num} = i;
@@ -59,7 +61,8 @@ classdef MDG_dataHandler <handle
         
         function gen_condList(obj)
             trials = obj.totalTrial;
-            disTrialNum = ceil(trials/8);
+            if(obj.isRealExp) disTrialNum = ceil(trials/8); end
+            if(~obj.isRealExp) disTrialNum = ceil(trials/10); end
             temp = zeros(trials,10);
             temp(1:ceil(trials/2), obj.dictator) = 1;
             temp(ceil(trials/2)+1:trials, obj.dictator) = 2;
@@ -264,7 +267,7 @@ classdef MDG_dataHandler <handle
             end
         end
         
-        function calculate_score(obj)
+        function finalPayoff = calculate_score(obj)
             total_point    = 0;
             total_gain     = 0;
             penalty        = 0;
@@ -302,7 +305,8 @@ classdef MDG_dataHandler <handle
             
             obj.total_point = total_point;
             obj.penalty     = penalty;
-            obj.payoff      = total_gain/obj.totalTrial * (obj.total_point-obj.penalty);
+            obj.finalPayoff      = total_gain/obj.totalTrial * (obj.total_point-obj.penalty);
+            finalPayoff = obj.finalPayoff;
         end
     
         function gen_random_result(obj)

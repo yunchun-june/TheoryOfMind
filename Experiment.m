@@ -10,10 +10,10 @@ try
     FALSE               = 0;
     
     %===== Constants =====%
-    CDG_practiceTrial       = 1;
-    CDG_realExpTrial        = 3;
-    MDG_practiceTrial       = 1;
-    MDG_realExpTrial        = 3;
+    CDG_practiceTrial       = 0;
+    CDG_realExpTrial        = 0;
+    MDG_practiceTrial       = 0;
+    MDG_realExpTrial        = 10;
     displayerOn             = TRUE;
     
     %===== IP Config for 505 ===%
@@ -54,6 +54,9 @@ try
 %         myPort = 7878;
 %         oppPort = 5656;
 %     end
+%     
+%     if(strcmp(rule,'player1')) displayerOn = TRUE; end
+%     if(strcmp(rule,'player2')) displayerOn = FALSE; end
     
     %===== Initialize Componets =====%
     keyboard    = keyboardHandler();
@@ -82,7 +85,7 @@ try
     WaitSecs(1);
     
     %===== Practice of CDG =====% 
-    displayer.writeMessage('Practice of Experiment 1','Press space to start');
+    displayer.writeMessage('Practice of experiment 1','Press space to start');
     fprintf('Practice of Experimen 1,Press space to start\n');
     keyboard.waitSpacePress();
     displayer.blackScreen();
@@ -91,25 +94,25 @@ try
     
     displayer.writeMessage('End of Practice','');
     fprintf('End of practice 1.\n');
-    WaitSecs(5);
+    WaitSecs(2);
     displayer.blackScreen();
     WaitSecs(1);
     
     %===== Real Experiment of CDG =====% 
-    displayer.writeMessage('This is the real Experiment','Press space to start');
+    displayer.writeMessage('This is the REAL experiment','Press space to start');
     fprintf('Real Experiment,Press space to start\n');
     keyboard.waitSpacePress();
     displayer.blackScreen();
     
     CDG_real.run();
     
-    displayer.writeMessage('End of Experiment (Phase1)','Wait for instructions');
+    displayer.writeMessage('End of experiment (phase1)','Wait for instructions');
     fprintf('End of Experiment 1.\n');
     keyboard.waitSpacePress();
     displayer.blackScreen();
     
     %===== Practice of MDG =====% 
-    displayer.writeMessage('Practice of Experiment 2','Press space to start');
+    displayer.writeMessage('Practice of experiment 2','Press space to start');
     fprintf('Practice of Experimen 2,Press space to start\n');
     keyboard.waitSpacePress();
     displayer.blackScreen();
@@ -118,22 +121,27 @@ try
     
     displayer.writeMessage('End of Practice','');
     fprintf('End of practice 2.\n');
-    WaitSecs(5);
+    WaitSecs(2);
     displayer.blackScreen();
     WaitSecs(1);
     
     %===== Real Experiment of MDG =====% 
-    displayer.writeMessage('This is the real Experiment','Press space to start');
+    displayer.writeMessage('This is the REAL experiment','Press space to start');
     fprintf('Real Experiment,Press space to start\n');
     keyboard.waitSpacePress();
     displayer.blackScreen();
     
     MDG_real.run();
     
-    displayer.writeMessage('End of Experiment (Phase2)','Wait for instructions');
-    fprintf('End of Experiment 2.\n');
-    keyboard.waitSpacePress();
+    displayer.writeMessage('End of experiment (phase2)','');
+    fprintf('End of experiment 2.\n');
+    WaitSecs(2);
     displayer.blackScreen();
+    WaitSecs(1);
+    
+    fprintf(['Total payoff: ' num2str(150+CDG_real.getPayoff()+MDG_real.getPayoff()) '\n']);
+    displayer.showPayoff(CDG_real.getPayoff(),MDG_real.getPayoff());
+    keyboard.waitEscPress();
     
     %===== Clean up =====% 
     displayer.closeScreen();

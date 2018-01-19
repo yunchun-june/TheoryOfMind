@@ -16,47 +16,47 @@ try
     MDG_realExpTrial        = 1;
     displayerOn             = TRUE;
     
-%     %===== IP Config for 505 ===%
-%     myID = input('This seat: ','s');
-%     oppID = input('Opp seat: ','s');
-%     fprintf('cmd to open terminal. "IPConfig" to get IP (the one with 172.16.10.xxx)\n');
-%     myIP = input('This IP: ','s');
-%     myIP = strcat('172.16.10.',myIP);
-%     oppIP = input('Opp IP: ','s');
-%     oppIP = strcat('172.16.10.',oppIP);
-%     myPort = 5454;
-%     oppPort = 5454;
-%     if myID(2) == 'a' | myID(2)=='A'
-%         rule = 'player1';
-%     else
-%         rule = 'player2';
+    %===== IP Config for 505 ===%
+    myID = input('This seat: ','s');
+    oppID = input('Opp seat: ','s');
+    fprintf('cmd to open terminal. "IPConfig" to get IP (the one with 172.16.10.xxx)\n');
+    myIP = input('This IP: ','s');
+    myIP = strcat('172.16.10.',myIP);
+    oppIP = input('Opp IP: ','s');
+    oppIP = strcat('172.16.10.',oppIP);
+    myPort = 5454;
+    oppPort = 5454;
+    if myID(2) == 'a' | myID(2)=='A'
+        rule = 'player1';
+    else
+        rule = 'player2';
+    end
+    
+%     %===== IP Config for developing ===%
+%     myIP = 'localhost';
+%     oppIP = 'localhost';
+% 
+%     rule = input('Rule(player1/player2): ','s');
+%     assert( strcmp(rule,'player1')|strcmp(rule,'player2'));
+%     if strcmp(rule,'player1')
+%         myID = 'test_player1';
+%         oppID = 'test_player2';
+%         %myIP = '192.168.1.83';
+%         %oppIP = '192.168.1.42';
+%         myPort = 5656;
+%         oppPort = 7878;
 %     end
-    
-    %===== IP Config for developing ===%
-    myIP = 'localhost';
-    oppIP = 'localhost';
-
-    rule = input('Rule(player1/player2): ','s');
-    assert( strcmp(rule,'player1')|strcmp(rule,'player2'));
-    if strcmp(rule,'player1')
-        myID = 'test_player1';
-        oppID = 'test_player2';
-        %myIP = '192.168.1.83';
-        %oppIP = '192.168.1.42';
-        myPort = 5656;
-        oppPort = 7878;
-    end
-    if(strcmp(rule,'player2'))
-        myID = 'test_player2';
-        oppID = 'test_player1';
-        %myIP = '192.168.1.42';
-        %oppIP = '192.168.1.83';
-        myPort = 7878;
-        oppPort = 5656;
-    end
-    
-    if(strcmp(rule,'player1')) displayerOn = TRUE; end
-    if(strcmp(rule,'player2')) displayerOn = FALSE; end
+%     if(strcmp(rule,'player2'))
+%         myID = 'test_player2';
+%         oppID = 'test_player1';
+%         %myIP = '192.168.1.42';
+%         %oppIP = '192.168.1.83';
+%         myPort = 7878;
+%         oppPort = 5656;
+%     end
+%     
+%     if(strcmp(rule,'player1')) displayerOn = TRUE; end
+%     if(strcmp(rule,'player2')) displayerOn = FALSE; end
     
     %===== Initialize Componets =====%
     keyboard    = keyboardHandler();

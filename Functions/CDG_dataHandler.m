@@ -224,13 +224,13 @@ classdef CDG_dataHandler <handle
             penalty = 0;
             for i = 1:obj.totalTrial
                 if(strcmp(obj.rule,'player1'))
-                    if(obj.result{trial,obj.p1choice} == 0 || obj.result{trial,obj.p1guess} == 0)
+                    if(obj.result{i,obj.p1choice} == 0 || obj.result{i,obj.p1guess} == 0)
                         penalty = penalty+1;
                     end
                 end
                 
                 if(strcmp(obj.rule,'player2'))
-                    if(obj.result{trial,obj.p2choice} == 0 || obj.result{trial,obj.p2guess} == 0)
+                    if(obj.result{i,obj.p2choice} == 0 || obj.result{i,obj.p2guess} == 0)
                         penalty = penalty+1;
                     end
                 end

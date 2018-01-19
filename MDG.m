@@ -95,6 +95,15 @@ classdef MDG < handle
                     
                     obj.cnt.syncTrial(trial);
                     
+                    %notify progress
+                    quarter = ceil(obj.totalTrials/4);
+                    if obj.isRealExp && mod(trial,quarter) == 0 && trial ~= obj.totalTrials
+                        obj.displayer.writeMessage([num2str(25*trial/obj.totalTrials) '% done'],'');
+                        WaitSecs(2);
+                        displayer.blackScreen();
+                        WaitSecs(1);
+                    end
+                    
                     %display respond package
                     myRes.youAreDictator = strcmp(obj.rule,data.getDictator(trial));
                     myRes.keepMoney_ori     = -1;

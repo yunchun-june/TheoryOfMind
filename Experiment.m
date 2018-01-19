@@ -10,10 +10,10 @@ try
     FALSE               = 0;
     
     %===== Constants =====%
-    CDG_practiceTrial       = 0;
-    CDG_realExpTrial        = 0;
-    MDG_practiceTrial       = 0;
-    MDG_realExpTrial        = 10;
+    CDG_practiceTrial       = 1;
+    CDG_realExpTrial        = 8;
+    MDG_practiceTrial       = 1;
+    MDG_realExpTrial        = 8;
     displayerOn             = TRUE;
     
     %===== IP Config for 505 ===%

@@ -73,6 +73,15 @@ classdef CDG < handle
                     else
                         obj.cnt.syncTrial(trial);
                     end
+                    
+                    %notify progress
+                    quarter = ceil(obj.totalTrials/4);
+                    if obj.isRealExp && mod(trial,quarter) == 0 && trial ~= obj.totalTrials
+                        obj.displayer.writeMessage([num2str(25*trial/obj.totalTrials) '% done'],'');
+                        WaitSecs(2);
+                        displayer.blackScreen();
+                        WaitSecs(1);
+                    end
 
                     %response to get
                     myRes.choice = 0;

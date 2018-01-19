@@ -222,7 +222,7 @@ classdef CDG_dataHandler <handle
             obj.randomKey = mod(key,3)+1;
             temp = 0;
             penalty = 0;
-            for i = 1:obj.totolTrials
+            for i = 1:obj.totalTrial
                 if(strcmp(obj.rule,'player1'))
                     if(obj.result{trial,obj.p1choice} == 0 || obj.result{trial,obj.p1guess} == 0)
                         penalty = penalty+1;

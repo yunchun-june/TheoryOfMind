@@ -77,9 +77,9 @@ classdef CDG < handle
                     %notify progress
                     quarter = ceil(obj.totalTrials/4);
                     if obj.isRealExp && mod(trial,quarter) == 0 && trial ~= obj.totalTrials
-                        obj.displayer.writeMessage([num2str(25*trial/obj.totalTrials) '% done'],'');
+                        obj.displayer.writeMessage([num2str(25*trial/quarter) '% done'],'');
                         WaitSecs(2);
-                        displayer.blackScreen();
+                        obj.displayer.blackScreen();
                         WaitSecs(1);
                     end
 

@@ -305,7 +305,7 @@ classdef MDG_dataHandler <handle
             
             obj.total_point = total_point;
             obj.penalty     = penalty;
-            obj.finalPayoff      = total_gain/obj.totalTrial * (obj.total_point-obj.penalty);
+            obj.finalPayoff      = ceil(total_gain/obj.totalTrial) * (obj.total_point-obj.penalty);
             finalPayoff = obj.finalPayoff;
         end
     

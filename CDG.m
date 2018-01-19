@@ -232,7 +232,7 @@ classdef CDG < handle
                     obj.displayer.blackScreen();
                     WaitSecs(1);    
                     obj.finalScore = data.setKeyGetScore(random);
-                    obj.payoff = obj.finalScore*gainPerWin
+                    obj.payoff = obj.finalScore*gainPerWin;
                     obj.displayer.writeMessage(['Your Score: ',num2str(obj.finalScore)],['Your Total Payoff: ',num2str(obj.payoff), '$']);
                     WaitSecs(5);
 

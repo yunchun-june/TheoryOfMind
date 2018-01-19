@@ -251,7 +251,7 @@ classdef MDG < handle
                                    if(strcmp(keyName,'na'))
                                        continue;
                                    else
-                                       if(strcmp(keyName,'confirm'))
+                                       if(strcmp(keyName,'confirm') && myRes.s2 ~=-1)
                                             myRes.s2RT= timing;
                                             decisionMade = TRUE;
                                             myRes.s2answered = TRUE;
@@ -304,7 +304,7 @@ classdef MDG < handle
                                    if(strcmp(keyName,'na'))
                                        continue;
                                    else
-                                       if(strcmp(keyName,'confirm'))
+                                       if(strcmp(keyName,'confirm') && myRes.s1 ~= -1 )
                                             myRes.s1RT= timing;
                                             decisionMade = TRUE;
                                             myRes.s1answered = TRUE;
@@ -375,7 +375,7 @@ classdef MDG < handle
                                    if(strcmp(keyName,'na'))
                                        continue;
                                    else
-                                       if(strcmp(keyName,'confirm'))
+                                       if(strcmp(keyName,'confirm')&& myRes.s3 ~= -1)
                                             myRes.s3RT= timing;
                                             decisionMade = TRUE;
                                             myRes.s3answered = TRUE;

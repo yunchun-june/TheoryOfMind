@@ -127,21 +127,31 @@ classdef CDG_dataHandler <handle
                 obj.result{trial,obj.p1IsRight} = 0;
                 obj.result{trial,obj.p2IsRight} = 0;
                 obj.result{trial,obj.realSum}   = 0;
-                obj.result{trial,obj.winner}    = 2;
+                
+                if (obj.result{trial,obj.p2guess} ~= 0)
+                    obj.result{trial,obj.winner}    = 2;
+                else
+                    obj.result{trial,obj.winner}    = 0;
+                end
             elseif(obj.result{trial,obj.p1choice} ~= 0 && obj.result{trial,obj.p2choice} == 0)
                 obj.result{trial,obj.p1IsRight} = 0;
                 obj.result{trial,obj.p2IsRight} = 0;
                 obj.result{trial,obj.realSum}   = 0;
-                obj.result{trial,obj.winner}    = 1;
+                
+                if (obj.result{trial,obj.p1guess} ~= 0)
+                    obj.result{trial,obj.winner}    = 1;
+                else
+                    obj.result{trial,obj.winner}    = 0;
+                end
             elseif(obj.result{trial,obj.p1choice} ~= 0 && obj.result{trial,obj.p2choice} ~= 0)
                 
                 obj.result{trial,obj.realSum} = obj.result{trial,obj.p1choice} + obj.result{trial,obj.p2choice};
                 
-                if(obj.result{trial,obj.p1guess} == obj.result{trial,obj.realSum})
+                if(obj.result{trial,obj.p1guess} ~= 0  && obj.result{trial,obj.p1guess} == obj.result{trial,obj.realSum})
                     obj.result{trial,obj.p1IsRight}    = 1;
                 else obj.result{trial,obj.p1IsRight}   = 0; end
                 
-                if(obj.result{trial,obj.p2guess} == obj.result{trial,obj.realSum})
+                if(obj.result{trial,obj.p2guess} ~= 0 && obj.result{trial,obj.p2guess} == obj.result{trial,obj.realSum})
                     obj.result{trial,obj.p2IsRight}    = 1;
                 else obj.result{trial,obj.p2IsRight}   = 0; end
     
@@ -211,6 +221,22 @@ classdef CDG_dataHandler <handle
         function finalScore = setKeyGetScore(obj,key)
             obj.randomKey = mod(key,3)+1;
             temp = 0;
+            penalty = 0;
+            for i = 1:obj.totolTrials
+                if(strcmp(obj.rule,'player1'))
+                    if(obj.result{trial,obj.p1choice} == 0 || obj.result{trial,obj.p1guess} == 0)
+                        penalty = penalty+1;
+                    end
+                end
+                
+                if(strcmp(obj.rule,'player2'))
+                    if(obj.result{trial,obj.p2choice} == 0 || obj.result{trial,obj.p2guess} == 0)
+                        penalty = penalty+1;
+                    end
+                end
+            end
+            
+            
             for i = obj.randomKey:3:obj.totalTrial
                 if(strcmp(obj.rule,'player1'))
                     temp = temp + obj.result{i,obj.p1IsRight};
@@ -221,8 +247,8 @@ classdef CDG_dataHandler <handle
                 
             end
             
-            finalScore = temp;
-            obg.finalPayoff = temp;
+            finalScore = temp - penalty;
+            obj.finalPayoff = finalScore;
         end
         
         function logStatus(obj,trial)

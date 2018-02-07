@@ -159,7 +159,7 @@ classdef MDG < handle
                                    if(strcmp(keyName,'na')) continue;
                                    else
                                        if(strcmp(keyName,'confirm') && myRes.keepMoney ~= -1)
-                                            myRes.allocateRT = timing;
+                                            myRes.allocateRT = timing-startTime;
                                             myRes.allocated = TRUE;
                                             decisionMade = TRUE;
                                             fprintf('confirmed: keep %d$ give %d$\n',myRes.keepMoney);
@@ -252,7 +252,7 @@ classdef MDG < handle
                                        continue;
                                    else
                                        if(strcmp(keyName,'confirm') && myRes.s2 ~=-1)
-                                            myRes.s2RT= timing;
+                                            myRes.s2RT= timing-startTime;
                                             decisionMade = TRUE;
                                             myRes.s2answered = TRUE;
                                             fprintf('confirmed: you guess %d heart(s)\n',myRes.s2);
@@ -305,7 +305,7 @@ classdef MDG < handle
                                        continue;
                                    else
                                        if(strcmp(keyName,'confirm') && myRes.s1 ~= -1 )
-                                            myRes.s1RT= timing;
+                                            myRes.s1RT= timing-startTime;
                                             decisionMade = TRUE;
                                             myRes.s1answered = TRUE;
                                             fprintf('confirmed: you give %d heart(s)\n',myRes.s1);
@@ -376,7 +376,7 @@ classdef MDG < handle
                                        continue;
                                    else
                                        if(strcmp(keyName,'confirm')&& myRes.s3 ~= -1)
-                                            myRes.s3RT= timing;
+                                            myRes.s3RT= timing-startTime;
                                             decisionMade = TRUE;
                                             myRes.s3answered = TRUE;
                                             fprintf('confirmed : you guess %d heart(s).\n',myRes.s3);
